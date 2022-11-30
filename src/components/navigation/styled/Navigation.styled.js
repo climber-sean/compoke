@@ -5,8 +5,8 @@ export const StyledNav = styled.nav`
     padding: 20px;
     border-radius: 25px;
     box-shadow: 0 0 10px 4px rgba(0,0,0, 0.1);
-    display: inline-block;
-    margin: 20px 0;
+    display: block;
+    margin: 20px auto;
 `
 
 export const StyledNavHeading = styled.h2`

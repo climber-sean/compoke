@@ -1,5 +1,6 @@
 import GenSideBar from './GenSideBar'
 import { useState, useEffect } from 'react';
+import Loader from '../common/Loader'
 
 const Generation = (props) => {
     const [gameNames, setGameNames] = useState([]);
@@ -19,7 +20,9 @@ const Generation = (props) => {
                 ))
             })
         ))).then(() => {
-            setIsLoading(false);
+            setTimeout(function() {
+                setIsLoading(false);
+            }, 2000)
         });
 
     }, [props.generation.version_groups])
@@ -28,7 +31,7 @@ const Generation = (props) => {
         <>
             {
                 isLoading ? (
-                    <span>...loading</span>
+                    <Loader />
                 ) : (
                     <GenSideBar generation={props.generation} gameNames={gameNames} />
                 )

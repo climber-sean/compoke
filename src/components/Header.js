@@ -9,7 +9,7 @@ const HeaderText = styled.h1`
 `
 
 const HeaderContainer = styled.div`
-    background: #ef5350;
+    background: #FF0000;
     padding: 20px 0;
 `
 
