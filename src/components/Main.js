@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import Navigation from './Navigation';
-import Generation from './Generation';
+import Navigation from './navigation/Navigation';
+import Generation from './generation/Generation';
 import styled from 'styled-components';
 
 const StyledMain = styled.main`
