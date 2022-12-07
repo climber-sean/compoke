@@ -1,10 +1,17 @@
 import GenSideBar from './GenSideBar'
 import { useState, useEffect } from 'react';
 import Loader from '../common/Loader'
+import GenCompare from './GenCompare';
+import { GenContainer } from './styled/Generation.styled';
+
 
 const Generation = (props) => {
     const [gameNames, setGameNames] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [firstPokemon, setFirstPokemon] = useState({});
+    const [secondPokemon, setSecondPokemon] = useState({});
+    const [pokemonSelected, setPokemonSelected] = useState(false);
+    const [pokemonTwoSelected, setPokemonTwoSelected] = useState(false);
 
     useEffect(() => {
         setGameNames([]);
@@ -27,13 +34,34 @@ const Generation = (props) => {
 
     }, [props.generation.version_groups])
 
+    function getPokemon(event, pokemon) {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+            .then(resp => resp.json())
+            .then((data) =>  {
+                if (!event.shiftKey) {
+                    setFirstPokemon({...data})
+                    setPokemonSelected(true);
+                    return
+                }
+                setSecondPokemon({...data});
+                setPokemonTwoSelected(true);
+            })
+    }
+
     return (
         <>
             {
                 isLoading ? (
                     <Loader />
                 ) : (
-                    <GenSideBar generation={props.generation} gameNames={gameNames} />
+                    <GenContainer>
+                        <GenSideBar generation={props.generation} gameNames={gameNames} click={getPokemon}/>
+                        <GenCompare pokemon={firstPokemon}
+                            secondPokemon={secondPokemon}
+                            selected={pokemonSelected}
+                            selectedTwo={pokemonTwoSelected}
+                        />
+                    </GenContainer>
                 )
             }
         </>
