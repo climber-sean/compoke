@@ -22,7 +22,7 @@ const GenSideBar = (props) => {
                 <ul>
                     {
                         props.generation.pokemon_species.map((species, id) => (
-                            <li key={id}>{species.name}</li>
+                            <li onClick={(event) => props.click(event, species.name)} key={id}>{species.name}</li>
                         ))
                     }
                 </ul>

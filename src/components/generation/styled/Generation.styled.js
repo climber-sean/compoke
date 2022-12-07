@@ -9,3 +9,8 @@ export const GenAside = styled.aside`
     max-height: 600px;
     overflow-y: scroll;
 `
+
+export const GenContainer = styled.div`
+    display: flex;
+    gap: 20px;
+`
